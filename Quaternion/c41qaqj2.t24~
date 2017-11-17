@@ -1,0 +1,50 @@
+﻿Public Class Form1
+    Public Sub New()
+
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+        q1.Text = "0,1"
+        q2.Text = "0,1"
+        q3.Text = "0,1"
+        q4.Text = "0,1"
+
+        Nb_iter.Value = 20
+
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim q As New Quaternion(CSng(q1.Text), CSng(q2.Text), CSng(q3.Text), CSng(q4.Text))
+        m_RichTextBox.Text += "0 : " + q.print + Chr(10)
+        For i As Integer = 0 To CInt(Nb_iter.Value)
+            q.multiplication(q.q1, q.q2, q.q3, q.q4)
+            m_RichTextBox.Text += i.ToString + " : " + q.print + Chr(10)
+        Next
+
+        Dim Pas As Double = 0.1
+        Dim Mandelbulb As New Mandelbulb(-4, 4, -4, 4, -4, 4, -4, 4, 99, 100, Pas)
+        Mandelbulb.Compute()
+        'Mandelbulb.Filtre()
+
+
+        For x As Double = Mandelbulb.Xmin To Mandelbulb.Xmax Step Mandelbulb.Pas
+            Dim Xr As Double = Math.Round(x, 3)
+            Dim file As System.IO.StreamWriter
+            file = My.Computer.FileSystem.OpenTextFileWriter("d:\test_" + Xr.ToString + ".CSV", True)
+
+            Dim Liste As List(Of Point3d) = (From P In Mandelbulb.ListPoints
+                                             Where P.x = Xr
+                                             Select P).Distinct.ToList
+            For Each Point3d As Point3d In Liste
+                file.WriteLine(Point3d.print.Replace(","c, "."c))
+            Next
+
+            file.Close()
+        Next
+
+
+    End Sub
+End Class

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+		<script type="text/javascript" src="js_mandelbrot_feV3.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+		<title>Fractale de Mandelbrot</title>
+	</head>
+	<body onmouseup="stop(event);" onload="init();">
+		<form method="post" action="javascript:draw();" accept-charset="ISO-8859-1">
+			<p>Parametres Color Map <br/> </p>
+				<table align="center">
+					<tr>
+						<td>
+							<input type="number" id="iR1n" min="5" max="60" value="20" />
+						</td>
+						<td>
+							<input type="number" id="iR2n" min="5" max="60"  value="20"  />
+						</td>
+						<td>
+							<input type="number" id="iR3n" min="5" max="60"  value="20"  /><br/>
+						</td>
+						<td>
+							<input type="number" id="iP1n" min="0" max="360"  value="0" />
+						</td>
+						<td>
+							<input type="number" id="iP2n" min="0" max="360"  value="120"  />
+						</td>
+						<td>
+							<input type="number" id="iP3n" min="0" max="360"  value="240"  /><br/>
+						</td>
+						
+					</tr>
+					<tr>
+						<td> <input type="number" id="iA1n" min="0" max="255" value="127" /> </td>
+						<td>
+							<input type="number" id="iA2n" min="0" max="255"  value="127"  />
+						</td>
+						<td>
+							<input type="number" id="iA3n" min="0" max="255"  value="127"  /><br/>
+						</td>
+						<td>
+							<input type="number" id="iC1n" min="0" max="255"  value="127" />
+						</td>
+						<td>
+							<input type="number" id="iC2n" min="0" max="255"  value="127"  />
+						</td>
+						<td>
+							<input type="number" id="iC3n" min="0" max="255"  value="127"  /><br/>
+						</td>
+						
+					</tr>
+				</table>
+				<label for="iNb">NB Copie (%): </label>
+				<input type="number" id="iNbn"  min="1" max="4000" value="100" /> <br/>
+				<p> Parametres de la fractale </p><br/>
+				<label for="iCentX">X Center : </label>
+				<input type="text" id="iCentX" value="-0.5"/>
+				<label for="iCentY">Y Center : </label>
+				<input type="text" id="iCentY" value="0"/>
+				<label for="iZoom">Zoom : </label>
+				<input type="text" id="iZoom" value="4"/><br/>
+				<label for="iSizeX">X size : </label>
+				<input type="text" id="iSizeX" value="500"/>
+				<label for="iSizeY">Y size : </label>
+				<input type="text" id="iSizeY" value="500"/>
+				<label for="maxIter">Max Iter : </label>
+				<input type="text" id="maxIter" value="100"/><br/>
+				<input type="submit" value="Valider"/>
+			
+		</form>
+		<div id="canvasDiv_Map"></div>
+		<div id="canvasDiv_Fractal"></div>
+		<p>
+			<a id="dl" download="Canvas.png" href="#">Download Canvas</a>
+		</p>
+		<p>
+			Commande python :
+			<div id="d"><p>Contenu</p>
+		</p>
+
+		<p>
+			Programme de <a href="http://www.renaud-henry.fr/">Renaud HENRY</a> <br/>
+			<br/>
+			
+		</p>
+	</body>
+</html>
